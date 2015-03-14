@@ -150,17 +150,11 @@ module Nlpir
   #--函数
 
   def NLPIR_Init(sInitDirPath=nil , encoding=UTF8_CODE)
-    sInitDirPath += "/Data/"
-    if File.exist?(sInitDirPath)==false
-      FileUtils.mkdir(sInitDirPath)
-      filemother = File.expand_path("../Data/", __FILE__)
-      FileUtils.copy_entry filemother,sInitDirPath
-    end          
     @charset = 'gbk' if encoding == GBK_CODE
     @charset = 'utf-8' if encoding == UTF8_CODE
     @charset = 'big5' if  encoding == BIG5_CODE
     @charset = 'gbk' if encoding == GBK_FANTI_CODE
-    NLPIR_Init_rb.call(nil,encoding)
+    NLPIR_Init_rb.call(sInitDirPath,encoding)
   end
   alias :nlpir_init  :NLPIR_Init
 
